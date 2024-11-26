@@ -20,4 +20,7 @@ if [ "$API" -ge 26 ]; then
     chcon -R u:object_r:vendor_file:s0 $MODPATH/vendor
     chcon -R u:object_r:vendor_configs_file:s0 $MODPATH/vendor/etc
   else
-    
+    chcon -R u:object_r:vendor_file:s0 $MODPATH/system/vendor
+    chcon -R u:object_r:vendor_configs_file:s0 $MODPATH/system/vendor/etc
+  fi
+fi
