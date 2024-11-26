@@ -4,6 +4,14 @@
  This module only changes the configuration on "audio_policy" because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not.
 
  *This applies to internal Speakers & Wired (not for Bluetooth/USB devices).
+## Take note
+  Before you install this module, try to get about what sampling rate is used on your device, with the command:
+  
+      dumpsys media.audio_flinger
+
+  look at the very top of the "Output thread" (MIXER), you will get information about the "Sample rate" used with the flags or AudioStreamOut used such as `AUDIO_OUTPUT_FLAG_PRIMARY` & `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
+
+  *or u can use SampleRateChecker app.
 ## Requirement
  this is module so install using Magisk app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
