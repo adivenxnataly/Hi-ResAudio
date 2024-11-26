@@ -22,5 +22,4 @@ for FILE in $FILES; do
   else
     MODFILE=$MODPATH/system$FILE
   fi
-  copy_policy_file $FILE $MODFILE
-done
+  
