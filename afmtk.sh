@@ -3,7 +3,7 @@
 MODPOL=`find $MODPATH -type f -name audio_policy.conf`
 MODCONF=`find $MODPATH -type f -name audio_policy_configuration.xml`
 
-# check for the existence of the deep_buffer and direct tags:
+# check for the existence of the deep_buffer tags:
 for MODCONFIG in $MODCONF; do
     DEEP_BUFFER=$(grep -c '<mixPort name="deep_buffer"' $MODCONF)
     if [[ $DEEP_BUFFER -eq 0 ]]; then
