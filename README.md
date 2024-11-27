@@ -6,7 +6,7 @@
 
  *applies to internal Speakers & Wired (not for Bluetooth/USB devices).
 ## Take note
-  before you install this module, try to get about what sampling rate is used on your device, with the command:
+  before you install this module, try to get about what sampling rate is used on your device, open terminal (adb, Termux, etc) with superuser `su` access, then enter the command:
   
       dumpsys media.audio_flinger
 
