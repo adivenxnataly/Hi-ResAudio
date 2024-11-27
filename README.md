@@ -2,11 +2,11 @@
  ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/banner.png)
  Enable high resolution audio for MediaTek only up to 32-bit/192kHz (if device supports).
 
- This module only changes the configuration on "audio_policy" because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not.
+ this module only changes the configuration on "audio_policy" because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not.
 
- *This applies to internal Speakers & Wired (not for Bluetooth/USB devices).
+ *applies to internal Speakers & Wired (not for Bluetooth/USB devices).
 ## Take note
-  Before you install this module, try to get about what sampling rate is used on your device, with the command:
+  before you install this module, try to get about what sampling rate is used on your device, with the command:
   
       dumpsys media.audio_flinger
 
