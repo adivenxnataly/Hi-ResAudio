@@ -14,9 +14,9 @@
   
    - Sample rate: `48000Hz` or `192000Hz`
    - Flags (AudioStreamOut): `AUDIO_OUTPUT_FLAG_PRIMARY` or `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
-   - Format : `AUDIO_FORMAT_PCM_16_BIT` or `AUDIO_FORMAT_PCM_32_BIT`
+   - Format: `AUDIO_FORMAT_PCM_16_BIT` or `AUDIO_FORMAT_PCM_32_BIT`
 
-  *or u can use SampleRateChecker app.
+  *or u can use "Sample Rate Checker" app.
 ## Requirement
  this is module so install using Magisk app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
