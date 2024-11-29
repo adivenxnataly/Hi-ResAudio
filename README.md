@@ -10,9 +10,11 @@
   
       dumpsys media.audio_flinger
 
-  look at the very top of the "Output thread" (MIXER):
+  look at the very top of the "Output thread" (MIXER), you will get information about:
   
-  you will get information about the "Sample rate" used only "48000 Hz" or "192000 Hz", with the flags used such as: `AUDIO_OUTPUT_FLAG_PRIMARY` & `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`, and what format to use: `AUDIO_FORMAT_PCM_16_BIT` or `AUDIO_FORMAT_PCM_32_BIT`
+   - Sample rate: `48000Hz` or `192000Hz`
+   - Flags (AudioStreamOut): `AUDIO_OUTPUT_FLAG_PRIMARY` or `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
+   - Format : `AUDIO_FORMAT_PCM_16_BIT` or `AUDIO_FORMAT_PCM_32_BIT`
 
   *or u can use SampleRateChecker app.
 ## Requirement
