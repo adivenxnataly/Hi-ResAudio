@@ -15,7 +15,7 @@
    - Sample rate: `48000Hz` or `192000Hz`
    - Flags (AudioStreamOut): `AUDIO_OUTPUT_FLAG_PRIMARY` or `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
    - Format: `AUDIO_FORMAT_PCM_16_BIT` or `AUDIO_FORMAT_PCM_32_BIT`
-   ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/dumpsys-ss.jpg)
+  ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/dumpsys-ss.jpg)
 
   *or u can use "Sample Rate Checker" app.
    ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/sampleratechecker.jpg)
