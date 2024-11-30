@@ -10,7 +10,7 @@
   
       dumpsys media.audio_flinger
 
-  look at the very top of the "Output thread" (MIXER), you will get information about:
+  look at the very top of the `"Output thread" (MIXER)` you will get information about:
   
    - Sample rate: `48000Hz` or `192000Hz`
    - Flags (AudioStreamOut): `AUDIO_OUTPUT_FLAG_PRIMARY` or `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
