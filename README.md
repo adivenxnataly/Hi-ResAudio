@@ -18,7 +18,8 @@
  
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/dumpsys-ss.jpg)
 
-  *or u can use "Sample Rate Checker" app.
+  *or u can use "Sample Rate Checker" app:
+  
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/sampleratechecker.jpg)
    
 ## Requirement
