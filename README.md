@@ -38,4 +38,4 @@
 
 ## Source
  - [Android Developers](https://source.android.com/docs/core/audio/implement-policy)
- - [Android Sources (Google Git)](https://android.googlesource.com/platform/frameworks/av/+/dc46286/services/audiopolicy/config/audio_policy_configuration.xml)
+ - [Android Source (Google Git)](https://android.googlesource.com/platform/frameworks/av/+/dc46286/services/audiopolicy/config/audio_policy_configuration.xml)
