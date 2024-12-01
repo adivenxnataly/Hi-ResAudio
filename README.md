@@ -35,3 +35,7 @@
   - Android 12 - MIUI 13
   - Android 13 - MIUI 14
   - Android 14 - HyperOS 1.0
+
+## Source
+ - [Android Developers](https://source.android.com/docs/core/audio/implement-policy)
+ - [Android Sources](https://android.googlesource.com/platform/frameworks/av/+/dc46286/services/audiopolicy/config/audio_policy_configuration.xml)
