@@ -21,7 +21,10 @@
   *or u can use "Sample Rate Checker" app:
   
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/sampleratechecker.jpg)
-   
+
+  *for testing the Hi-Res Audio using song with `24-bit/192kHz` & using USB Audio Player Pro (UAPP) app:
+![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/usbaudioplayerpro.jpg)
+
 ## Requirement
  this is module so install using Magisk app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
