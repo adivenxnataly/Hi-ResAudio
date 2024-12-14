@@ -13,7 +13,7 @@ ui_print "  VersionCode : $(grep_prop versionCode $MODPATH/module.prop)"
 
 SDK=$(getprop ro.build.version.sdk)
 ui_print "  SDK : $SDK (API)"
-if [ "$SDK" -eq 31 ]; then
+if [ $SDK -eq 31 ]; then
     sleep 1
     ui_print "  SDK version is supported. Continuing..."
 else
@@ -26,7 +26,7 @@ fi
 ui_print ""
 ui_print "• Search for DEEP_BUFFER Property:"
 DBPROP=$(getprop audio.deep_buffer.media)
-if [ -z "$DBPROP" ]; then
+if [ -z $DBPROP ]; then
     sleep 2
     ui_print "  audio.deep_buffer.media property not found!"
     ui_print "  trying to force enable the property"
@@ -34,7 +34,7 @@ if [ -z "$DBPROP" ]; then
         sleep 3
     ui_print "  audio.deep_buffer.media is $(getprop audio.deep_buffer.media)"
 else
-    if [ "$DBPROP" == false ]; then
+    if [ $DBPROP == false ]; then
         resetprop -n audio.deep_buffer.media true
         sleep 2
     else
@@ -59,7 +59,7 @@ ui_print ""
 ui_print "• Checking Sampling Rates:"
 SAMPLERATE=$(grep 'samplingRates="44100 48000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
     ui_print "  SamplingRates: $SAMPLERATE "
-if [ "$SAMPLERATE" = "44100 48000" ]; then
+if [ $SAMPLERATE = "44100 48000" ]; then
     ui_print "- Enabling High Sampling Rates:"
     sleep 1
     sed -i 's|samplingRates="44100 48000"|samplingRates="44100 48000 96000 192000"|' $MODCONF
@@ -71,7 +71,7 @@ fi
 HSR=$(grep 'samplingRates="44100 48000 96000 192000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
     sleep 2
     ui_print "  SamplingRates: $HSR "
-if [ "$HSR" = "44100 48000 96000 192000" ]; then
+if [ $HSR = "44100 48000 96000 192000" ]; then
     sleep 1
     ui_print "  Success! device using High Sampling Rates."
 fi
@@ -116,7 +116,7 @@ fi
 ui_print ""
 ui_print "• Checking FLAGS status:"
 FLAGS=$(grep -A 5 'flags AUDIO_OUTPUT_FLAG_PRIMARY' $MODPOL | head -n 1)
-if [[ -z "$FLAGS" ]]; then
+if [[ -z $FLAGS ]]; then
     ui_print "  FLAG_PRIMARY not found! change to FLAG_DEEP_BUFFER"
     sleep 1
 else
