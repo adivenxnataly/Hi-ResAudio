@@ -18,11 +18,11 @@
  
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/dumpsys-ss.jpg)
 
-  *or u can use "Sample Rate Checker" app:
+  *or u can use "Sample Rate Checker" app: [Here](https://drive.google.com/uc?export=download&id=12y7HTmKdsWJuvOrDS8F2VS-vdmJgE8Ow)
   
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/sampleratechecker.jpg)
 
-  *for testing the Hi-Res Audio using song with `24-bit/192kHz` & using USB Audio Player Pro (UAPP) app:
+  *for testing the Hi-Res Audio using song with `24-bit/192kHz` & using USB Audio Player Pro (UAPP) app: [Download Song](https://drive.google.com/uc?export=download&id=1fI7vuuZyZ519OyzWF9x0rQD5qH7ZJlyd) 
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/usbaudioplayerpro.jpg)
 
 ## Requirement
