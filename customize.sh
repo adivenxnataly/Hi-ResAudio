@@ -115,7 +115,7 @@ fi
 
 ui_print ""
 ui_print "• Checking FLAGS status:"
-FLAGS=$(grep -A 5 'flags AUDIO_OUTPUT_FLAG_PRIMARY' $MODPOL | head -n 1)
+FLAGS=$(grep -A 5 'flags AUDIO_OUTPUT_FLAG_PRIMARY' $MODPOL | sed -E 's/.*flags ([^ ]+).*/\1/' | head -n 1)
 if [[ -z $FLAGS ]]; then
     ui_print "  FLAG_PRIMARY not found! change to FLAG_DEEP_BUFFER"
     sleep 1
@@ -126,7 +126,7 @@ else
     sleep 2
 fi
 
-FLAGD=$(grep -A 5 'flags AUDIO_OUTPUT_FLAG_DEEP_BUFFER' $MODPOL | head -n 1)
+FLAGD=$(grep -A 5 'flags AUDIO_OUTPUT_FLAG_DEEP_BUFFER' $MODPOL | sed -E 's/.*flags ([^ ]+).*/\1/' | head -n 1)
 if [[ -z $FLAGD ]]; then
     ui_print "  FLAG_DEEP_BUFFER not found!"
     sleep 1
