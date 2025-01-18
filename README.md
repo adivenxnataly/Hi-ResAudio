@@ -1,5 +1,5 @@
 ## Hi-Res Audio™
- ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/assets.png)
+ ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/banner.png)
  Enable High-resolution audio for MediaTek devices up to 32-bit/192kHz (if device supports).
 
 > this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not.
