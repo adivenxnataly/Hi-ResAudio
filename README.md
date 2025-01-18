@@ -25,6 +25,7 @@
 > for testing the Hi-Res Audio using song with `24-bit/192kHz` & using USB Audio Player Pro (UAPP) app:
   
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/usbaudioplayerpro.jpg)
+> UAPP using `Variable rate` in Settings > Android audio > Android sample rate : Variable Rate (default is Fixed 44100Hz)
 
 ### Requirement
  this is module so install using Magisk app:
