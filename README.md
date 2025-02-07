@@ -45,3 +45,18 @@
   - Android 12 - MIUI 13
   - Android 13 - MIUI 14
   - Android 14 - HyperOS 1.0
+
+### Source & Reference
+Reference:
+<br>
+• [Audio Policy configuration](https://source.android.com/docs/core/audio/implement-policy)
+<br>
+• [AAudio & MMAP](https://source.android.com/docs/core/audio/aaudio)
+
+Source:
+<br>
+• [audio_policy.conf](https://dumps.tadiphone.dev/dumps/xiaomi/agate/-/blob/missi-user-12-SP1A.210812.016-V13.0.2.0.SKWMIXM-release-keys/vendor/etc/audio_policy.conf?ref_type=heads)
+<br>
+• [audio_policy_configuration.xml](https://dumps.tadiphone.dev/dumps/xiaomi/agate/-/blob/missi-user-12-SP1A.210812.016-V13.0.2.0.SKWMIXM-release-keys/vendor/etc/audio_policy_configuration.xml?ref_type=heads)
+<br>
+• [Playback_ParamTreeView.xml](https://dumps.tadiphone.dev/dumps/xiaomi/agate/-/blob/missi-user-12-SP1A.210812.016-V13.0.2.0.SKWMIXM-release-keys/vendor/etc/audio_param/Playback_ParamTreeView.xml?ref_type=heads)
