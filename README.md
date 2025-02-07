@@ -27,6 +27,9 @@
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/usbaudioplayerpro.jpg)
 > UAPP using `Variable rate` in Settings > Android audio > Android sample rate : Variable Rate (default is Fixed 44100Hz)
 
+The Result for v2.0 with AAudio & MMAP (using Device HW Info):
+![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/aaudio_mmap.jpg)
+> grant root access, then enter audio option
 ### Requirement
  this is module so install using Magisk app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
@@ -37,6 +40,7 @@
  *does not cause softbrick or bootloop.
 ### Apps & Song
 
+ - Device HW Info: [Here](https://play.google.com/store/apps/details?id=ru.andr7e.deviceinfohw)
  - Sample Rate Checker: [Here](https://drive.google.com/uc?export=download&id=12y7HTmKdsWJuvOrDS8F2VS-vdmJgE8Ow)
  - FLAC (24-bit/192kHz): [Download Song](https://drive.google.com/uc?export=download&id=1fI7vuuZyZ519OyzWF9x0rQD5qH7ZJlyd) 
  - USB Audio Player Pro (UAPP): [Here](https://play.google.com/store/apps/details?id=com.extreamsd.usbaudioplayerpro)
