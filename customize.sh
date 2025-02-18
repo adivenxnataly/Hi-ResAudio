@@ -53,9 +53,7 @@ else
 fi
 
 createservice(){
-    
     touch $MODPATH/service.sh
-    
     {
         cat $MODPATH/service.sh
         echo "resetprop -n aaudio.mmap_policy 3"
@@ -66,92 +64,92 @@ createservice(){
 }
 
 aaudio_mmap_properties(){
-ui_print ""
-ui_print " • Search for AAudio & MMAP Properties:"
-AMPPROP=$(getprop aaudio.mmap_policy)
-if [ -z $AMPPROP ]; then
-    sleep 2
-    ui_print "   aaudio.mmap_policy property not found!"
-    ui_print "   trying to force add & enable the property"
-        resetprop -n aaudio.mmap_policy 3
-        sleep 3
-    ui_print "   aaudio.mmap_policy is $(getprop aaudio.mmap_policy)"
-else
-    if [ $AMPPROP == 3 ]; then
-        ui_print "   aaudio.mmap_policy is $AMPPROP"
-        ui_print "   success!"
-    else
-        ui_print "   aaudio.mmap_policy is $AMPPROP"
-        ui_print "   set to '3' (1 = don't use, 2 = auto, 3 = always use) for MMAP"
-        resetprop -n aaudio.mmap_policy 3
-    fi
-fi
-
-AMEPPROP=$(getprop aaudio.mmap_exclusive_policy)
-if [ -z $AMEPPROP ]; then
-    sleep 2
     ui_print ""
-    ui_print "   aaudio.mmap_exclusive_policy property not found!"
-    ui_print "   trying to force add & enable the property"
-        resetprop -n aaudio.mmap_exclusive_policy 3
-        sleep 3
-    ui_print "   aaudio.mmap_exclusive_policy is $(getprop aaudio.mmap_exclusive_policy)"
-    createservice
-else
-    if [ $AMEPPROP == 3 ]; then
-        ui_print "   aaudio.mmap_exclusive_policy is $AMEPPROP"
-        ui_print "   success!"
+    ui_print " • Search for AAudio & MMAP Properties:"
+    AMPPROP=$(getprop aaudio.mmap_policy)
+    if [ -z $AMPPROP ]; then
+        sleep 2
+        ui_print "   aaudio.mmap_policy property not found!"
+        ui_print "   trying to force add & enable the property"
+            resetprop -n aaudio.mmap_policy 3
+            sleep 3
+        ui_print "   aaudio.mmap_policy is $(getprop aaudio.mmap_policy)"
     else
-        ui_print "   aaudio.mmap_exclusive_policy is $AMEPPROP"
-        ui_print "   set to '3' (1 = don't use, 2 = auto, 3 = always use) for MMAP"
-        resetprop -n aaudio.mmap_exclusive_policy 3
-        createservice
+        if [ $AMPPROP == 3 ]; then
+            ui_print "   aaudio.mmap_policy is $AMPPROP"
+            ui_print "   success!"
+        else
+            ui_print "   aaudio.mmap_policy is $AMPPROP"
+            ui_print "   set to '3' (1 = don't use, 2 = auto, 3 = always use) for MMAP"
+            resetprop -n aaudio.mmap_policy 3
+       fi
     fi
-fi
+
+    AMEPPROP=$(getprop aaudio.mmap_exclusive_policy)
+    if [ -z $AMEPPROP ]; then
+        sleep 2
+        ui_print ""
+        ui_print "   aaudio.mmap_exclusive_policy property not found!"
+        ui_print "   trying to force add & enable the property"
+            resetprop -n aaudio.mmap_exclusive_policy 3
+            sleep 3
+        ui_print "   aaudio.mmap_exclusive_policy is $(getprop aaudio.mmap_exclusive_policy)"
+        createservice
+    else
+        if [ $AMEPPROP == 3 ]; then
+            ui_print "   aaudio.mmap_exclusive_policy is $AMEPPROP"
+            ui_print "   success!"
+        else
+            ui_print "   aaudio.mmap_exclusive_policy is $AMEPPROP"
+            ui_print "   set to '3' (1 = don't use, 2 = auto, 3 = always use) for MMAP"
+            resetprop -n aaudio.mmap_exclusive_policy 3
+            createservice
+        fi
+    fi
 }
 
 audio_policy_sampling_rates(){
-if [ "$(grep 'sampling_rates 44100|48000|96000|192000' $MODPOL | sed 's/sampling_rates//g; s/|/ /g' | sed 's/^ *//;s/ *$//' | head -n 1)" == "44100 48000 96000 192000" ]; then
-    ui_print "   done!"
-else
-    ui_print "   failed!"
-fi
+    if [ "$(grep 'sampling_rates 44100|48000|96000|192000' $MODPOL | sed 's/sampling_rates//g; s/|/ /g' | sed 's/^ *//;s/ *$//' | head -n 1)" == "44100 48000 96000 192000" ]; then
+        ui_print "   done!"
+    else
+        ui_print "   failed!"
+    fi
 }
 
 audio_config_sampling_rates(){
-ui_print ""
-ui_print " • Checking Sampling Rates"
-SAMPLERATE=$(grep 'samplingRates="44100 48000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
-if [ "$SAMPLERATE" == "44100 48000" ]; then
-    sleep 2
-    ui_print "   SamplingRates: $SAMPLERATE "
-    sleep 1
-    ui_print " - Enabling High Sampling Rates"
-    sed -i 's|samplingRates="44100 48000"|samplingRates="44100 48000 96000 192000"|' $MODCONF
-    sleep 3
-else
-    ui_print "   ERROR! Device not using 44.1kHz/48kHz"
     ui_print ""
-fi
-
-HSR=$(grep 'samplingRates="44100 48000 96000 192000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
-if [[ "$HSR" == "44100 48000 96000 192000" ]]; then
-    sleep 2
-    ui_print "   SamplingRates: $HSR "
-    sleep 1
-    ui_print "   Device using High Sampling Rates (96kHz/192kHz)"
-else
-    ui_print "   Failed, device not using 96kHz/192kHz!"
-fi
+    ui_print " • Checking Sampling Rates"
+    SAMPLERATE=$(grep 'samplingRates="44100 48000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
+    if [ "$SAMPLERATE" == "44100 48000" ]; then
+        sleep 2
+        ui_print "   SamplingRates: $SAMPLERATE "
+        sleep 1
+        ui_print " - Enabling High Sampling Rates"
+        sed -i 's|samplingRates="44100 48000"|samplingRates="44100 48000 96000 192000"|' $MODCONF
+        sleep 3
+    else
+        ui_print "   ERROR! Device not using 44.1kHz/48kHz"
+        ui_print ""
+    fi
+    
+    HSR=$(grep 'samplingRates="44100 48000 96000 192000"' $MODCONF | sed -E 's/.*samplingRates="([^"]+)".*/\1/' | head -n 1)
+    if [[ "$HSR" == "44100 48000 96000 192000" ]]; then
+        sleep 2
+        ui_print "   SamplingRates: $HSR "
+        sleep 1
+        ui_print "   Device using High Sampling Rates (96kHz/192kHz)"
+    else
+        ui_print "   Failed, device not using 96kHz/192kHz!"
+    fi
 }
 
 aaudio_mmap_output(){
-POL=$(sed -n '/primary output/=;t' $MODCONF | head -n 1 | tr -d ' ')
-POLD=$(sed -n '/<mixPort name="primary output"/,/\/mixPort>/p' $MODCONF | wc -l)
-Z=1
-let VAL=POL+POLD-Z
-if [ "$VAL" -eq 64 ]; then
-    sleep 3
+    POL=$(sed -n '/primary output/=;t' $MODCONF | head -n 1 | tr -d ' ')
+    POLD=$(sed -n '/<mixPort name="primary output"/,/\/mixPort>/p' $MODCONF | wc -l)
+    Z=1
+    let VAL=POL+POLD-Z
+    if [ "$VAL" -eq 64 ]; then
+        sleep 3
         sed -i '64a\
                 <mixPort name="mmap_no_irq_out" role="source" flags="AUDIO_OUTPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_32_BIT" \
@@ -159,61 +157,61 @@ if [ "$VAL" -eq 64 ]; then
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="44100 48000" channelMasks="AUDIO_CHANNEL_OUT_ALL"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_output mixport!"
-    sleep 1
-else
-    ui_print "   error, can't patching mixport!"
-fi
+        ui_print "   successful adding aaudio_mmap_output mixport!"
+        sleep 1
+    else
+        ui_print "   error, can't patching mixport!"
+    fi
 }
 
 aaudio_mmap_input(){
-PIL=$(sed -n '/primary input/=;t' $MODCONF | head -n 1 | tr -d ' ')
-PILD=$(sed -n '/<mixPort name="primary input"/,/\/mixPort>/p' $MODCONF | wc -l)
-Z=1
-let VOL=PIL+PILD-Z
-if [ "$VOL" -eq 85 ]; then
+     PIL=$(sed -n '/primary input/=;t' $MODCONF | head -n 1 | tr -d ' ')
+     PILD=$(sed -n '/<mixPort name="primary input"/,/\/mixPort>/p' $MODCONF | wc -l)
+     Z=1
+     let VOL=PIL+PILD-Z
+     if [ "$VOL" -eq 85 ]; then
         sed -i '85a\
                 <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="8000 16000 32000 44100 48000" \
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_input mixport!"
-elif [ "$VOL" -eq 87 ]; then
+        ui_print "   successful adding aaudio_mmap_input mixport!"
+    elif [ "$VOL" -eq 87 ]; then
         sed -i '87a\
                 <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="8000 16000 32000 44100 48000" \
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_input mixport!"
-elif [ "$VOL" -eq 91 ]; then
+        ui_print "   successful adding aaudio_mmap_input mixport!"
+    elif [ "$VOL" -eq 91 ]; then
         sed -i '91a\
                 <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="8000 16000 32000 44100 48000" \
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_input mixport!"
-elif [ "$VOL" -eq 93 ]; then
+        ui_print "   successful adding aaudio_mmap_input mixport!"
+    elif [ "$VOL" -eq 93 ]; then
         sed -i '93a\
                 <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="8000 16000 32000 44100 48000" \
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_input mixport!"
-elif [ "$VOL" -eq 99 ]; then
+        ui_print "   successful adding aaudio_mmap_input mixport!"
+    elif [ "$VOL" -eq 99 ]; then
         sed -i '99a\
                 <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ"> \
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" \
                              samplingRates="8000 16000 32000 44100 48000" \
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/> \
                 </mixPort>' $MODCONF
-    ui_print "   successful adding aaudio_mmap_input mixport!"
-else
-    ui_print "   error, can't patching mixport!"
-fi
+        ui_print "   successful adding aaudio_mmap_input mixport!"
+    else
+        ui_print "   error, can't patching mixport!"
+    fi
 }
 
 ui_print ""
@@ -221,18 +219,18 @@ ui_print " • Find aaudio_mmap mixport:"
 for CONFIG in $MODCONF; do
     AAUDIO_MMAP=$(grep -c '<mixPort name="mmap_no_irq_out"' $CONFIG)
     if [ $AAUDIO_MMAP -eq 0 ]; then
-    sleep 1
-    ui_print "   aaudio_mmap_output mixport not found!"
-    ui_print " - Patching new mixport:"
-    aaudio_mmap_output
+        sleep 1
+        ui_print "   aaudio_mmap_output mixport not found!"
+        ui_print " - Patching new mixport:"
+        aaudio_mmap_output
     fi
     AAUDIO_MMAP_IN=$(grep -c '<mixPort name="mmap_no_irq_in"' $CONFIG)
     if [ $AAUDIO_MMAP -eq 0 ]; then
-    sleep 2
-    ui_print "   aaudio_mmap_input mixport not found!"
-    sleep 1
-    ui_print " - Patching new mixport:"
-    aaudio_mmap_input
+        sleep 2
+        ui_print "   aaudio_mmap_input mixport not found!"
+        sleep 1
+        ui_print " - Patching new mixport:"
+        aaudio_mmap_input
     fi
     AMOD=$(grep '<mixPort name="mmap_no_irq_out"' $CONFIG | sed -E 's/.*<mixPort name="([^"]+)".*/\1/' | head -n 1)
     if [ $AMOD == "mmap_no_irq_out" ]; then
@@ -255,16 +253,16 @@ for CONFIG in $MODCONF; do
 done
 
 aaudio_mmap_sources(){
-DBSRC=$(grep 'sources=".*deep_buffer.*"' $MODCONF | sed 's/.*sources="//;s/".*//;s/,/\n/g' | grep "deep_buffer" | head -n 1)
-if [ -z "$DBSRC" ]; then
-    ui_print "   deep_buffer source not found! using primary for patching source.."
-    ui_print "   source: $(grep 'sources=".*primary output.*"' $MODCONF | sed 's/.*sources="//;s/".*//;s/,/\n/g' | grep "primary output" | head -n 1)"
+    DBSRC=$(grep 'sources=".*deep_buffer.*"' $MODCONF | sed 's/.*sources="//;s/".*//;s/,/\n/g' | grep "deep_buffer" | head -n 1)
+    if [ -z "$DBSRC" ]; then
+        ui_print "   deep_buffer source not found! using primary for patching source.."
+        ui_print "   source: $(grep 'sources=".*primary output.*"' $MODCONF | sed 's/.*sources="//;s/".*//;s/,/\n/g' | grep "primary output" | head -n 1)"
         sed -i '/sources=".*primary output/{s//&,mmap_no_irq_out/}' $MODCONF
-else
-    ui_print "   source: $DBSRC"
-    ui_print "   using deep_buffer for patching source!"
-    sed -i '/sources=".*deep_buffer/{s//&,mmap_no_irq_out/}' $MODCONF
-fi
+    else
+        ui_print "   source: $DBSRC"
+        ui_print "   using deep_buffer for patching source!"
+        sed -i '/sources=".*deep_buffer/{s//&,mmap_no_irq_out/}' $MODCONF
+     fi
 }
 
 ui_print ""
@@ -288,43 +286,43 @@ else
 fi
 
 source_in(){
-SRI=$(sed -n '/sink="primary input"/=;t' $MODCONF | head -n 1 | tr -d ' ')
-SRID=$(sed -n '/sink="primary input"/,/\/>/p' $MODCONF | wc -l)
-Z=1
-let VIL=SRI+SRID-Z
-if [ $VIL -eq 271 ]; then
+    SRI=$(sed -n '/sink="primary input"/=;t' $MODCONF | head -n 1 | tr -d ' ')
+    SRID=$(sed -n '/sink="primary input"/,/\/>/p' $MODCONF | wc -l)
+    Z=1
+    let VIL=SRI+SRID-Z
+    if [ $VIL -eq 271 ]; then
         sed -i '271a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-elif [ $VIL -eq 272 ]; then
+        ui_print "   successful adding source_in!"
+    elif [ $VIL -eq 272 ]; then
         sed -i '272a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-elif [ $VIL -eq 273 ]; then
+        ui_print "   successful adding source_in!"
+    elif [ $VIL -eq 273 ]; then
         sed -i '273a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-elif [ $VIL -eq 278 ]; then
+        ui_print "   successful adding source_in!"
+    elif [ $VIL -eq 278 ]; then
         sed -i '278a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-elif [ $VIL -eq 279 ]; then
+        ui_print "   successful adding source_in!"
+    elif [ $VIL -eq 279 ]; then
         sed -i '279a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-elif [ $VIL -eq 302 ]; then
+        ui_print "   successful adding source_in!"
+    elif [ $VIL -eq 302 ]; then
         sed -i '302a\
                 <route type="mix" sink="mmap_no_irq_in" \
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic"/>' $MODCONF
-    ui_print "   successful adding source_in!"
-else
-    ui_print "   error, can't patching source_in"
-fi
+        ui_print "   successful adding source_in!"
+    else
+        ui_print "   error, can't patching source_in"
+    fi
 }
 
 ui_print ""
@@ -667,35 +665,32 @@ ui_print "  Patching to default Directory:"
 REPLACE="
 /system/vendor/etc/audio_policy.conf
 "
-
-for i in $REPLACE; do
-    if [ -r "$i" ]; then
-        chmod 644 "${MODPATH}${i}"
-        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${i}"
-        chown root:root "${MODPATH}${i}"
+for audiopolicy in $REPLACE; do
+    if [ -r "$audiopolicy" ]; then
+        chmod 644 "${MODPATH}${audiopolicy}"
+        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audiopolicy}"
+        chown root:root "${MODPATH}${audiopolicy}"
     fi
 done
 
 REPLACE="
 /system/vendor/etc/audio_policy_configuration.xml
 "
-
-for i in $REPLACE; do
-    if [ -r "$i" ]; then
-        chmod 644 "${MODPATH}${i}"
-        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${i}"
-        chown root:root "${MODPATH}${i}"
+for audioconf in $REPLACE; do
+    if [ -r "$audioconf" ]; then
+        chmod 644 "${MODPATH}${audioconf}"
+        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audioconf}"
+        chown root:root "${MODPATH}${audioconf}"
     fi
 done
 
 REPLACE="
 $DIRAP
 "
-
-for i in $REPLACE; do
-    if [ -r "$i" ]; then
-        chmod 644 "${MODPATH}${i}"
-        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${i}"
-        chown root:root "${MODPATH}${i}"
+for playback in $REPLACE; do
+    if [ -r "$playback" ]; then
+        chmod 644 "${MODPATH}${playback}"
+        chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${playback}"
+        chown root:root "${MODPATH}${playback}"
     fi
 done
