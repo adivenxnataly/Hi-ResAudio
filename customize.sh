@@ -1,6 +1,5 @@
 [ ! "$MODPATH" ] && MODPATH=${0%/*}
-
-mkdir -p $MODPATH/system/vendor/etc
+[ ! -d $MODPATH/system/vendor/etc ] && mkdir -p $MODPATH/system/vendor/etc
 
 . $MODPATH/copy.sh
 
@@ -11,15 +10,13 @@ MODPARAM=$(find $MODPATH -type f -name Playback_ParamTreeView.xml)
 aborting_sdk(){
     ui_print "  Android (SDK) version is not supported!"
     ui_print "  Module not installed!"
-    ui_print ""
-    exit 1
+    abort "  Aborting process.."
 }
 
 aborting_platform(){
     ui_print "  this is not Mediatek Device!"
     ui_print "  Module not installed!"
-    ui_print ""
-    exit 1
+    abort "  Aborting process.."
 }
 
 ui_print ""
@@ -659,13 +656,9 @@ else
     ui_print ""
 fi
 
-DIRAP=$(find /system/vendor/etc -type -f -name *Playback_ParamTreeView*.xml)
-
 ui_print "  Patching to default Directory:"
-REPLACE="
-/system/vendor/etc/audio_policy.conf
-"
-for audiopolicy in $REPLACE; do
+APOL="/system/vendor/etc/audio_policy.conf"
+for audiopolicy in $APOL; do
     if [ -r "$audiopolicy" ]; then
         chmod 644 "${MODPATH}${audiopolicy}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audiopolicy}"
@@ -673,10 +666,8 @@ for audiopolicy in $REPLACE; do
     fi
 done
 
-REPLACE="
-/system/vendor/etc/audio_policy_configuration.xml
-"
-for audioconf in $REPLACE; do
+ACONF="/system/vendor/etc/audio_policy_configuration.xml"
+for audioconf in $ACONF; do
     if [ -r "$audioconf" ]; then
         chmod 644 "${MODPATH}${audioconf}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audioconf}"
@@ -684,10 +675,8 @@ for audioconf in $REPLACE; do
     fi
 done
 
-REPLACE="
-$DIRAP
-"
-for playback in $REPLACE; do
+DIRAP="/system/vendor/etc/*audio_param*/Playback_ParamTreeView.xml"
+for playback in $DIRAP; do
     if [ -r "$playback" ]; then
         chmod 644 "${MODPATH}${playback}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${playback}"
