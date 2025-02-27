@@ -32,7 +32,7 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 > grant root access, then enter audio option
 
 ### Configurations
-**Sampling Rate** : `44100 48000 88200 96000 192000`
+**Sampling Rate** : `44100`, `48000`, `88200`, `96000`, `192000`, `256000`, `384000`
 <br>
 **Bit Depth** :
 - `AUDIO_FORMAT_PCM_8_BIT`
@@ -42,6 +42,29 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_FORMAT_PCM_32_BIT`
 - `AUDIO_FORMAT_PCM_FLOAT`
 >PCM is the standard output format, as it is a raw format and more flexible, rather than including formats that are specific to one particular format. for example, for MP3 we need to include `AUDIO_FORMAT_MP3`, likewise for other formats. this is not flexible therefore PCM is used as a universal output format.
+
+**Flags** :
+- `AUDIO_OUTPUT_FLAG_NONE`
+- `AUDIO_OUTPUT_FLAG_DIRECT`
+- `AUDIO_OUTPUT_FLAG_PRIMARY`
+- `AUDIO_OUTPUT_FLAG_FAST`
+- `AUDIO_OUTPUT_FLAG_DEEP_BUFFER`
+- `AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD`
+- `AUDIO_OUTPUT_FLAG_NON_BLOCKING`
+- `AUDIO_OUTPUT_FLAG_HW_AV_SYNC`
+- `AUDIO_OUTPUT_FLAG_TTS`
+- `AUDIO_OUTPUT_FLAG_RAW`
+- `AUDIO_OUTPUT_FLAG_SYNC`
+- `AUDIO_OUTPUT_FLAG_IEC958_NONAUDIO`
+- `AUDIO_OUTPUT_FLAG_DIRECT_PCM`
+- `AUDIO_OUTPUT_FLAG_MMAP_NOIRQ`
+- `AUDIO_OUTPUT_FLAG_VOIP_RX`
+- `AUDIO_OUTPUT_FLAG_INCALL_MUSIC`
+- `AUDIO_OUTPUT_FLAG_GAPLESS_OFFLOAD` (Android 12)
+- `AUDIO_OUTPUT_FLAG_SPATIALIZER` (Android 13)
+- `AUDIO_OUTPUT_FLAG_ULTRASOUND` (Android 14)
+- `AUDIO_OUTPUT_FLAG_BIT_PERFECT` (Android 15)
+>Some Flags are only available on Android with the new SDK.
 
 ### Requirement
  this is module so install using Magisk app:
