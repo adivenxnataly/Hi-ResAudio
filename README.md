@@ -66,7 +66,7 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_OUTPUT_FLAG_BIT_PERFECT` (Android 15)
 >Some Flags are only available on Android with the new SDK.
 
-**Channels:**
+**Channels** :
 - `AUDIO_CHANNEL_OUT_MONO` (front-left)
 - `AUDIO_CHANNEL_OUT_STEREO` (front-left, front-right)
 - `AUDIO_CHANNEL_OUT_2POINT1` (front-left, front-right, low-frequency)
