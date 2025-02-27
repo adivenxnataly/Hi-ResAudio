@@ -30,6 +30,19 @@
 The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/aaudio_mmap.jpg)
 > grant root access, then enter audio option
+
+### Configurations
+**Sampling Rate** : `44100 48000 88200 96000 192000`
+<br>
+**Bit Depth** :
+- `AUDIO_FORMAT_PCM_8_BIT`
+- `AUDIO_FORMAT_PCM_16_BIT`
+- `AUDIO_FORMAT_PCM_8_24_BIT`
+- `AUDIO_FORMAT_PCM_24_BIT_PACKED`
+- `AUDIO_FORMAT_PCM_32_BIT`
+- `AUDIO_FORMAT_PCM_FLOAT`
+>PCM is the standard output format, as it is a raw format and more flexible, rather than including formats that are specific to one particular format. for example, for MP3 we need to include `AUDIO_FORMAT_MP3`, likewise for other formats. this is not flexible therefore PCM is used as a universal output format.
+
 ### Requirement
  this is module so install using Magisk app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
