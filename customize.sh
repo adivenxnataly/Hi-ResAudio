@@ -657,8 +657,8 @@ else
 fi
 
 ui_print "  Patching to default Directory:"
-APOL="/system/vendor/etc/audio_policy.conf"
-for audiopolicy in $APOL; do
+REPLACE="/system/vendor/etc/audio_policy.conf"
+for audiopolicy in $REPLACE; do
     if [ -r "$audiopolicy" ]; then
         chmod 644 "${MODPATH}${audiopolicy}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audiopolicy}"
@@ -666,8 +666,8 @@ for audiopolicy in $APOL; do
     fi
 done
 
-ACONF="/system/vendor/etc/audio_policy_configuration.xml"
-for audioconf in $ACONF; do
+REPLACE="/system/vendor/etc/audio_policy_configuration.xml"
+for audioconf in $REPLACE; do
     if [ -r "$audioconf" ]; then
         chmod 644 "${MODPATH}${audioconf}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${audioconf}"
@@ -675,8 +675,8 @@ for audioconf in $ACONF; do
     fi
 done
 
-DIRAP="/system/vendor/etc/*audio_param*/Playback_ParamTreeView.xml"
-for playback in $DIRAP; do
+REPLACE="/system/vendor/etc/*audio_param*/Playback_ParamTreeView.xml"
+for playback in $REPLACE; do
     if [ -r "$playback" ]; then
         chmod 644 "${MODPATH}${playback}"
         chcon u:object_r:vendor_configs_file:s0 "${MODPATH}${playback}"
