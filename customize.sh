@@ -421,7 +421,7 @@ earchannels(){
         sleep 1
         ui_print "  - Enabling STEREO for Earpiece.. "
         sed -i '/<devicePort tagName="Earpiece"/,/<\/devicePort>/ s/channelMasks="AUDIO_CHANNEL_OUT_MONO"/channelMasks="AUDIO_CHANNEL_OUT_STEREO"/g' $MODCONF
-        sleep 3
+        sleep 1
     else
         sleep 1
         ui_print "    Earpiece Channel: $EARCH"
@@ -432,10 +432,12 @@ earchannels(){
     if [ $EARCHV == "AUDIO_CHANNEL_OUT_STEREO" ]; then
         sleep 1
         ui_print "    Earpiece channel: $EARCHV"
+        sleep 1
         ui_print "    success!"
     else
        sleep 1
        ui_print "    Earpiece channel: $EARCHV"
+       sleep 1
        ui_print "    failed!"
     fi
 }
@@ -467,6 +469,7 @@ channels_policy(){
     ui_print " • Checking Channels_Policy status:"
     CHP=$(grep -A 3 'outputs' $MODPOL | sed -E 's/.*channel_masks ([^ ]+).*/\1/' | sed '/sampling_rates/d' | sed '/outputs/d' | sed '/primary/d' | head -n 1)
     if [ $CHP == "AUDIO_CHANNEL_OUT_STEREO" ]; then
+        sleep 1
         ui_print "   status: $CHP"
         sleep 1
         ui_print " - Enabling custom channels (Policy)"
@@ -484,13 +487,14 @@ channels_policy(){
         if [ $VLDG == "AUDIO_CHANNEL_OUT_ALL" ]; then
             ui_print "   status_output: $VLDP"
             ui_print "   status_gain: $VLDG"
+            sleep 1
             ui_print "   success, enabling custom channels!"
         else
-            ui_print "   status: $VLDG (gain_1)"
+            ui_print "   status_gain $VLDG"
             ui_print "   failed to set custom channels"
         fi
     else
-        ui_print "   status: $VLDP (outputs)"
+        ui_print "   status_output: $VLDP"
         ui_print "   failed to set custom channels!"
     fi
 }
@@ -501,19 +505,21 @@ CHPP=$(grep -A 3 'outputs' $MODPOL | sed -E 's/.*channel_masks ([^ ]+).*/\1/' | 
 CHPG=$(sed -n '/outputs {/,/}/ { /primary {/,/}/p }' $MODPOL | grep -A 2 'gain_1' | sed -E 's/.*channel_mask ([^ ]+).*/\1/' | sed '/mode/d' | sed '/gain_1/d' | head -n 1)
 if [ $CHPP == "AUDIO_CHANNEL_OUT_STEREO" ]; then
     if [ $CHPG == "AUDIO_CHANNEL_OUT_STEREO" ]; then
+        sleep 1
         ui_print "   custom channels not configure!"
+        sleep 1
         ui_print "   patching custom channels in Policy.."
         channels_policy
         ui_print ""
         sleep 1
     else
-        ui_print "   status: $CHPG (gain_1)"
+        ui_print "   status_gain: $CHPG"
         ui_print "   failed, can't find the channels_policy!"
         ui_print ""
     fi
 else
     sleep 2
-    ui_print "   status: $CHPP (outputs)"
+    ui_print "   status_output: $CHPP"
     sleep 1
     ui_print "   failed, can't find channels_policy!"
     ui_print ""
