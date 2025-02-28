@@ -2,7 +2,9 @@
  ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/banner.png)
  Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
 
-> this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not.
+> [!NOTE]
+> this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not. <br>
+> for Snapdragon user, u can use [this](https://github.com/reiryuki/Hi-Res-Audio-Enabler-Magisk-Module) from reiryuki.
 
  *applies to **internal Speakers & Wired** (not for Bluetooth/USB devices).
 ### Take note
@@ -32,15 +34,19 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 > grant root access, then enter audio option
 
 ### Configurations
+> [!NOTE]
+>This configuration is what can be implemented on `audio_policy` which of course must be in accordance with the SDK version. i don't provide information for Android 11 and below, because this module is specifically for Android 12 and higher. if you are not satisfied with my module, you can modify it according to what i explained.
+
 **Sampling Rate** : `44100`, `48000`, `88200`, `96000`, `192000`, `256000`, `384000`
 <br>
-**Bit Depth** :
+**Format & Bit Depth** :
 - `AUDIO_FORMAT_PCM_8_BIT`
 - `AUDIO_FORMAT_PCM_16_BIT`
 - `AUDIO_FORMAT_PCM_8_24_BIT`
 - `AUDIO_FORMAT_PCM_24_BIT_PACKED`
 - `AUDIO_FORMAT_PCM_32_BIT`
 - `AUDIO_FORMAT_PCM_FLOAT`
+
 >PCM is the standard output format, as it is a raw format and more flexible, rather than including formats that are specific to one particular format. for example, for MP3 we need to include `AUDIO_FORMAT_MP3`, likewise for other formats. this is not flexible therefore PCM is used as a universal output format.
 
 **Flags** :
@@ -98,6 +104,7 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_CHANNEL_OUT_HAPTIC_AB` (haptic-a, haptic-b)
 - `AUDIO_CHANNEL_OUT_MONO_HAPTIC_AB` (mono, haptic-ab)
 - `AUDIO_CHANNEL_OUT_STEREO_HAPTIC_AB` (stereo, haptoc-ab)
+> this will not give a change in AudioFlinger level, only the `audio_policy` but still give an effect.
 
 ### Requirement
  this is module so install using Magisk app:
