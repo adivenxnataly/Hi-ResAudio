@@ -35,7 +35,7 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 
 ### Configurations
 > [!NOTE]
->This configuration is what can be implemented on `audio_policy` which of course must be in accordance with the SDK version. i don't provide information for Android 11 and below, because this module is specifically for Android 12 and higher. if you are not satisfied with my module, you can modify it according to what i explained.
+>This configuration is what can be implemented on `audio_policy` which of course must be in accordance with the API version. i don't provide information for Android 11 and below, because this module is specifically for Android 12 and higher. if you are not satisfied with my module, you can modify it according to what i explained.
 
 **Sampling Rate** : `44100`, `48000`, `88200`, `96000`, `192000`, `256000`, `384000`
 <br>
@@ -70,7 +70,7 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_OUTPUT_FLAG_SPATIALIZER` (Android 13)
 - `AUDIO_OUTPUT_FLAG_ULTRASOUND` (Android 14)
 - `AUDIO_OUTPUT_FLAG_BIT_PERFECT` (Android 15)
->Some Flags are only available on Android with the new SDK.
+>Some Flags are only available on Android with the new API version.
 
 **Channels** :
 - `AUDIO_CHANNEL_OUT_MONO` (front-left)
