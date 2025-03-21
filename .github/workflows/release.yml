@@ -6,14 +6,8 @@ on:
         description: 'Release version (e.g., x.x with?)'
         required: true
       versionCode:
-        description: 'Release version code (e.g., x0000?)'
+        description: 'Release version code (e.g., xxxx)'
         required: true
-    
-  push:
-    branches:
-      - main
-  release:
-    types: [published]
 
 permissions:
   contents: write
@@ -33,17 +27,17 @@ jobs:
           zip -9rv ./HiResAudio-aaudio_mmap.zip ./* -x ./.git ./.github ./README.md \
             ./update/update.json ./update/changelog.md
 
-      - name: Releasing
+      - name: Create release
         run: |
-          gh release create "2.0-000" \
+          gh release create "${{ github.event.inputs.version }}" \
             ./HiResAudio-aaudio_mmap.zip -F ./update/changelog.md
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Updating service files
+      - name: Update service files
         run: |
-          python3 ./.github/mkjson "2.0-000" "2" \
-            "https://github.com/adivenxnataly/Hi-ResAudio/releases/download/2.0-000/HiResAudio-aaudio_mmap.zip" \
+          python3 ./.github/mkjson "${{ github.event.inputs.version }}" "${{ github.event.inputs.versionCode }}" \
+            "https://github.com/adivenxnataly/Hi-ResAudio/releases/download/${{ github.event.inputs.version }}/HiResAudio-aaudio_mmap.zip" \
             "https://github.com/adivenxnataly/Hi-ResAudio/releases/latest"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
