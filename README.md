@@ -1,8 +1,10 @@
 ## Hi-Res Audio™
-[![Releases](https://img.shields.io/github/v/release/adivenxnataly/Hi-ResAudio?color=green&logoColor=orange&label=Download&logo=DocuSign)](https://github.com/adivenxnataly/Hi-ResAudio/releases) [![License](https://img.shields.io/github/license/adivenxnataly/Hi-ResAudio?color=orange)](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/LICENSE)
+[![Releases](https://img.shields.io/github/v/release/adivenxnataly/Hi-ResAudio?color=green&logoColor=orange&label=Download&logo=DocuSign)](https://github.com/adivenxnataly/Hi-ResAudio/releases) [![License](https://img.shields.io/github/license/adivenxnataly/Hi-ResAudio?color=red&label=License)](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/LICENSE)
 
- ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/banner.png)
  Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
+
+![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/hiresbanner.png)
+
 
 > [!NOTE]
 > this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not. <br>
