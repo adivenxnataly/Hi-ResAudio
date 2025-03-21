@@ -1,6 +1,14 @@
-name: rls
+name: Release
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., x.x with?)'
+        required: true
+      versionCode:
+        description: 'Release version code (e.g., x0000?)'
+        required: true
+    
   push:
     branches:
       - main
