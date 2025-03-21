@@ -1,6 +1,6 @@
 id=HiResAudio
 name=Hi-Res Audio™
-version=v2.0 with mmap_playback
+version=v2.0 with aaudio_mmap
 versionCode=20000
 author=Adinata | @Adivenxnataly
 description=Enable high resolution audio in audio_policy config file for MediaTek only up to 32-bit/192kHz for audio output (Speaker & Wired).
