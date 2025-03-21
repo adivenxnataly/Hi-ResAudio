@@ -1,4 +1,6 @@
 ## Hi-Res Audio™
+[![Releases](https://img.shields.io/github/v/release/adivenxnataly/Hi-ResAudio?color=green&logoColor=orange&label=Download&logo=DocuSign)](https://github.com/adivenxnataly/Hi-ResAudio/releases) [![License](https://img.shields.io/github/license/adivenxnataly/Hi-ResAudio?color=orange)](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/LICENSE)
+
  ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/banner.png)
  Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
 
