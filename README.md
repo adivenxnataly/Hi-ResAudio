@@ -1,10 +1,9 @@
 ## Hi-Res Audio™
-[![Releases](https://img.shields.io/github/v/release/adivenxnataly/Hi-ResAudio?color=green&logoColor=orange&label=Download&logo=DocuSign)](https://github.com/adivenxnataly/Hi-ResAudio/releases) [![License](https://img.shields.io/github/license/adivenxnataly/Hi-ResAudio?color=red&label=License)](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/LICENSE)
-
- Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
+[![Releases](https://img.shields.io/github/v/release/adivenxnataly/Hi-ResAudio?color=green&label=Download&logo=github)](https://github.com/adivenxnataly/Hi-ResAudio/releases) [![License](https://img.shields.io/github/license/adivenxnataly/Hi-ResAudio?color=red&label=License)](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/LICENSE)
 
 ![](https://github.com/adivenxnataly/Hi-ResAudio/blob/main/files/hiresbanner.png)
 
+ Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
 
 > [!NOTE]
 > this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not. <br>
@@ -109,6 +108,9 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_CHANNEL_OUT_MONO_HAPTIC_AB` (mono, haptic-ab)
 - `AUDIO_CHANNEL_OUT_STEREO_HAPTIC_AB` (stereo, haptoc-ab)
 > this will not give a change in AudioFlinger level, only the `audio_policy` but still give an effect.
+
+### Boost Gain/Volume (without distortion)
+Follow my gist instructions: [Here](https://gist.github.com/adivenxnataly/3f9052c6f28ce66205b3dc940421299d) - `not need root access!`
 
 ### Requirement
  this is module so install using Magisk app:
