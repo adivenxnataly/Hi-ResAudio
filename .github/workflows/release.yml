@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (e.g., x.x with?)'
+        description: 'Release title (e.g., v2.0 with aaudio_mmap)'
         required: true
       versionCode:
-        description: 'Release version code (e.g., xxxx)'
+        description: 'Release version code (e.g., 20000)'
         required: true
 
 permissions:
@@ -24,23 +24,16 @@ jobs:
 
       - name: Compressing
         run: |
-          zip -9rv ./HiResAudio-aaudio_mmap.zip ./* -x ./.git ./.github ./README.md \
-            ./update/update.json ./update/changelog.md
+          zip -9rv ./HiResAudio-aaudio_mmap.zip ./* -x ./.git ./.github ./README.md ./LICENSE ./update ./files
 
       - name: Create release
         run: |
-          gh release create "${{ github.event.inputs.version }}" \
+          # Format versionCode to create tag (e.g., 20000 -> 2.0-000)
+          TAG=$(echo "${{ github.event.inputs.versionCode }}" | sed 's/\(..\)\(...\)/\1-\2/')
+          
+          # Create release with tag and title
+          gh release create "${TAG}" \
+            --title "${{ github.event.inputs.version }}" \
             ./HiResAudio-aaudio_mmap.zip -F ./update/changelog.md
         env:
           GH_TOKEN: ${{ github.token }}
-
-      - name: Update service files
-        run: |
-          python3 ./.github/mkjson "${{ github.event.inputs.version }}" "${{ github.event.inputs.versionCode }}" \
-            "https://github.com/adivenxnataly/Hi-ResAudio/releases/download/${{ github.event.inputs.version }}/HiResAudio-aaudio_mmap.zip" \
-            "https://github.com/adivenxnataly/Hi-ResAudio/releases/latest"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add ./update/update.json
-          git commit -m 'JSON update'
-          git push
