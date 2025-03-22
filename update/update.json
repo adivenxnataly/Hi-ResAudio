@@ -2,5 +2,5 @@
   "version": "v2.0-release",
   "versionCode": 20001,
   "zipUrl": "https://github.com/adivenxnataly/Hi-ResAudio/releases/download/v2.0-release/HiResAudio-aaudio_mmap.zip",
-  "changelog": "https://github.com/adivenxnataly/Hi-ResAudio/releases/latest"
+  "changelog": "https://raw.githubusercontent.com/adivenxnataly/Hi-ResAudio/main/update/changelog.md"
 }
