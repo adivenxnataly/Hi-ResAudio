@@ -26,17 +26,21 @@ jobs:
             exit 1
           fi
 
-      - name: Compress files (improved exclusion)
+      - name: Compress files (rsync method)
         run: |
-          # Create zip with proper exclusion
-          find . -mindepth 1 \
-            -not -path './.git*' \
-            -not -path './.github*' \
-            -not -path './README.md' \
-            -not -path './LICENSE' \
-            -not -path './update/*' \
-            -not -path './files/*' \
-            -exec zip -9r ./HiResAudio-aaudio_mmap.zip {} +
+          mkdir -p staging
+          rsync -a --exclude='.git/' \
+               --exclude='.github/' \
+               --exclude='README.md' \
+               --exclude='LICENSE' \
+               --exclude='update/' \
+               --exclude='files/' \
+               --exclude='*.zip' \
+               ./ staging/
+
+          cd staging && zip -9r ../HiResAudio-aaudio_mmap.zip .
+          cd ..
+          rm -rf staging
 
       - name: Create release for tag release
         run: |
