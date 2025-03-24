@@ -6,7 +6,7 @@ on:
         description: 'Release title (e.g., v2.0 with aaudio_mmap)'
         required: true
       versionCode:
-        description: 'Release version code (e.g., 20000)'
+        description: 'Release version code (e.g., xx000)'
         required: true
 
 permissions:
@@ -19,19 +19,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Writing the variables
-        run: cat ./module.prop | tee -a "${GITHUB_ENV}"
-
-      - name: Compressing
+      - name: Validate versionCode format
         run: |
-          zip -9rv ./HiResAudio-aaudio_mmap.zip ./* -x ./.git ./.github ./README.md ./LICENSE ./update ./files
+          if [[ ! "${{ github.event.inputs.versionCode }}" =~ ^[0-9]{5}$ ]]; then
+            echo "Error: versionCode must be 5 digits (e.g., 21000)"
+            exit 1
+          fi
 
-      - name: Create release
+      - name: Compress files (improved exclusion)
         run: |
-          # Format versionCode to create tag (e.g., 20000 -> 2.0-000)
-          TAG=$(echo "${{ github.event.inputs.versionCode }}" | sed 's/\(..\)\(...\)/\1-\2/')
+          # Create zip with proper exclusion
+          find . -mindepth 1 \
+            -not -path './.git*' \
+            -not -path './.github*' \
+            -not -path './README.md' \
+            -not -path './LICENSE' \
+            -not -path './update/*' \
+            -not -path './files/*' \
+            -exec zip -9r ./HiResAudio-aaudio_mmap.zip {} +
+
+      - name: Create release for tag release
+        run: |
+          # Extract major (2), minor (1), and build (000) from versionCode 21000
+          MAJOR=$(echo "${{ github.event.inputs.versionCode }}" | cut -c1)
+          MINOR=$(echo "${{ github.event.inputs.versionCode }}" | cut -c2)
+          BUILD=$(echo "${{ github.event.inputs.versionCode }}" | cut -c3-5)
           
-          # Create release with tag and title
+          TAG="${MAJOR}.${MINOR}-${BUILD}"
+          echo "Creating release with tag: ${TAG}"
+          
           gh release create "${TAG}" \
             --title "${{ github.event.inputs.version }}" \
             ./HiResAudio-aaudio_mmap.zip -F ./update/changelog.md
