@@ -5,8 +5,10 @@
 
  Enable **High-resolution** audio for MediaTek devices up to 32-bit/192kHz (if device supports).
 
-> [!NOTE]
+> [!important]
 > this module only changes the configuration on `audio_policy` because most Android devices limit their capabilities to 16-bit/48kHz only, the rest depends on whether the device used supports Hi-Res Audio™ or not. <br>
+
+> [!caution]
 > for Snapdragon user, u can use [this](https://github.com/reiryuki/Hi-Res-Audio-Enabler-Magisk-Module) from reiryuki.
 
  *applies to **internal Speakers & Wired** (not for Bluetooth/USB devices).
@@ -37,8 +39,13 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 > grant root access, then enter audio option
 
 ### Configurations
-> [!NOTE]
+> [!note]
 >This configuration is what can be implemented on `audio_policy` which of course must be in accordance with the API version. i don't provide information for Android 11 and below, because this module is specifically for Android 12 and higher. if you are not satisfied with my module, you can modify it according to what i explained.
+
+<details>
+<summary><b>Read more for Configuration?</b></summary>
+
+<br>
 
 **Sampling Rate** : `44100`, `48000`, `88200`, `96000`, `192000`, `256000`, `384000`
 <br>
@@ -108,18 +115,23 @@ The Result for v2.0 with AAudio & MMAP (using Device HW Info):
 - `AUDIO_CHANNEL_OUT_MONO_HAPTIC_AB` (mono, haptic-ab)
 - `AUDIO_CHANNEL_OUT_STEREO_HAPTIC_AB` (stereo, haptoc-ab)
 > this will not give a change in AudioFlinger level, only the `audio_policy` but still give an effect.
+</details>
 
-### Boost Gain/Volume (without distortion)
-Follow my gist instructions: [Here](https://gist.github.com/adivenxnataly/3f9052c6f28ce66205b3dc940421299d) - `not need root access!`
+### Boost Gain/Volume
+> [!tip]
+> **Boost Gain/Volume** (without distortion) <br>
+> Follow my gist instructions: [Here](https://gist.github.com/adivenxnataly/3f9052c6f28ce66205b3dc940421299d) (non-root)
 
 ### Requirement
- this is module so install using Magisk app:
+ this is module so install using Magisk/KSU/APatch app:
  [Download from Release page](https://github.com/adivenxnataly/Hi-ResAudio/releases)
 
-  - Android 12 (SDK 31)
-  - MTK devices
-  
- **doesn't cause softbrick or bootloop.**
+> [!important]
+> - Android 12 (SDK 31)
+> - MTK devices <br>
+>
+> **doesn't cause softbrick or bootloop.**
+
 ### Apps & Song
 
  - Device HW Info: [Here](https://play.google.com/store/apps/details?id=ru.andr7e.deviceinfohw)
